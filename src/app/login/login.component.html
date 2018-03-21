@@ -1,0 +1,28 @@
+<div>
+    
+    <form (ngSubmit)="submitLogin()" #loginForm="ngForm">
+                   <input [(ngModel)]="formData.email" #username="ngModel" type="email" required
+          name="em" placeholder="Email" minlength="10" [ngClass]="{'error':username.errors && username.touched}"/>
+
+          <div *ngIf="username.errors && username.touched" class="red error">
+<div *ngIf="username.errors.required">This is required field.</div>
+<div *ngIf="username.errors.minlength">minimum 10 required</div>
+   </div>
+   <br>
+          <input [(ngModel)]="formData.password" #pwd="ngModel" required name="pwd" minlength="10" 
+          [ngClass]="{'errors':pwd.errors && pwd.touched}" placeholder="Password" type="password"/>
+
+          <div *ngIf="pwd.errors && pwd.touched" class="red error">
+              <div *ngIf="pwd.errors.required">This is required field.</div>
+              <div *ngIf="pwd.errors.minlength">minimum 10 required</div>
+                 </div>
+
+          <button type="submit"  class="btn btn-primary"  [disabled]="loginForm.invalid">Login</button>
+    </form>
+
+</div>
+
+
+
+
+
