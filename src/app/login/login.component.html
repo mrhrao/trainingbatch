@@ -1,31 +1,39 @@
+<div class=out>
 
-<form (ngSubmit)="submitLogin()" #loginForm="ngForm">
-<fieldset>
-<legend> SignIn</legend>
 
-  Email<br>
-  <input [(ngModel)]="formData.email" #username="ngModel" required type="email"  name="em" placeholder="email"
-   minlength="10" [ngClass]="{'error':username.errors && username.touched}"/>
-  <div *ngIf="username.errors && username.touched"  class="red error">
-      <div *ngIf="username.errors.required">This is required field.</div>
-      <div *ngIf="username.errors.minlength">minimum 10 required</div>
-  </div>
+  <div class=in>
+       <form (ngSubmit)="submitLogin()" #loginForm="ngForm">
+       <fieldset>
+       <legend> SignIn</legend>
+
+      Email<br>
+      <input style="color :black" [(ngModel)]="formData.email" #username="ngModel" required type="email"  name="em" placeholder="email"
+       minlength="10" [ngClass]="{'error':username.errors && username.touched}"/>
+       <div *ngIf="username.errors && username.touched"  class="red error">
+          <div *ngIf="username.errors.required">This is required field.</div>
+          <div *ngIf="username.errors.minlength">minimum 10 required</div>
+       </div>
   <br>
   Password:<br>
-<input [(ngModel)]="formData.password" #pswd="ngModel" required  type="password" minlength="10" 
- name="pwd" [ngClass]="{'error':pswd.errors && pswd.touched}"/>
-<div *ngIf="pswd.errors && pswd.touched"  class="red error">
-  <div *ngIf="pswd.errors.required">This is required field.</div>
-  <div *ngIf="pswd.errors.minlength">minimum 10 required</div>
-</div>
+    <input style="color :black" [(ngModel)]="formData.password" #pswd="ngModel" required placeholder="Password" type="password" minlength="10" 
+     name="pwd" [ngClass]="{'error':pswd.errors && pswd.touched}"/>
+    <div *ngIf="pswd.errors && pswd.touched"  class="red error">
+       <div *ngIf="pswd.errors.required">This is required field.</div>
+        <div *ngIf="pswd.errors.minlength">minimum 10 required</div>
+    </div>
 
-  <br><br>
+     <br><br>
     <label> Not a Member Yet ? </label> 
     <a href="signup.html">  SignUp </a>
     <button type="submit" class="btn btn-default" [disabled]="loginForm.invalid">SignIn</button> <br>
-<br>
-<label> Forgot Password ? </label> 
+    <br>
+    <label> Forgot Password ? </label> 
     <a >  Forgot Password </a>
   
-</fieldset>
-</form>
+    </fieldset>
+     </form>
+
+
+
+</div>
+</div>
