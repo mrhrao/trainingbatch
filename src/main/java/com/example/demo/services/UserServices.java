@@ -2,6 +2,7 @@ package com.example.demo.services;
 
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -12,6 +13,7 @@ import javax.management.relation.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.roleDTO.RoleDTO;
 import com.example.demo.model.userModel.RoleModel;
 import com.example.demo.model.userModel.UserModel;
 import com.example.demo.repoINterface.RoleRepository;
@@ -51,13 +53,13 @@ public class UserServices {
 		
 	}
 	
-	public List<RoleModel> findOneByUserName(String name)
-	{
-		
-		UserModel model= userData.findOneByUserName(name);
-		List<RoleModel> models=model.getRole();
-		return models;
-	}
+//	public List<RoleModel> findOneByUserName(String name)
+//	{
+//		
+//		UserModel model= userData.findOneByUserName(name);
+//		List<RoleModel> models=roleData.findAllByUserName(model.getUserName());
+//		return models;
+//	}
 	public void addRole(RoleModel data)
 	{
 		
@@ -87,5 +89,18 @@ public class UserServices {
 		return model2;
 	}
 	
+	public List<RoleDTO> findAllRole()
+	{
+		List<RoleModel> models=roleData.findAll();
+		List<RoleDTO> data=new ArrayList<RoleDTO>();
+		for(RoleModel model:models)
+		{
+			RoleDTO dto=new RoleDTO();
+			dto.setId(model.getId());
+			dto.setUserRole(model.getUserRole());
+			data.add(dto);
+		}
+		return data;
+	}
 }
 

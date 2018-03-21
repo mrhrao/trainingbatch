@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.roleDTO.RoleDTO;
 import com.example.demo.model.userModel.RoleModel;
 import com.example.demo.model.userModel.UserModel;
 import com.example.demo.services.UserServices;
@@ -28,23 +29,29 @@ public class FindAllUserData {
 	
 	@RequestMapping(value="/showAllByRole",method=RequestMethod.GET)
 	@ResponseBody
-	private List<RoleModel> getall()
+	public List<RoleModel> getall()
 	{
 		return userData.findAllUserModel();
 	}
 	
 	@RequestMapping(value="/showAllByUserRole",method=RequestMethod.GET)
 	@ResponseBody
-	private List<RoleModel> getallUser(@RequestParam("userRole") String userRole)
+	public List<RoleModel> getallUser(@RequestParam("userRole") String userRole)
 	{
 		return userData.findAllByUserModel(userRole);
 	}
-
-
-	@RequestMapping(value="/showRoleByUserName",method=RequestMethod.GET)
-	@ResponseBody
-	private List<RoleModel> getUserByRole(@RequestParam("userName") String userName)
+	
+	@RequestMapping(value="/showRole" ,method=RequestMethod.GET)
+	public List<RoleDTO> getAllRole()
 	{
-		return userData.findOneByUserName(userName);
+		return userData.findAllRole();
+		
 	}
+
+//	@RequestMapping(value="/showRoleByUserName",method=RequestMethod.GET)
+//	@ResponseBody
+//	private List<RoleModel> getUserByRole(@RequestParam("userName") String userName)
+//	{
+//		return userData.findOneByUserName(userName);
+//	}
 }
