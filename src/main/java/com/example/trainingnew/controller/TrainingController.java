@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.trainingnew.model.Rolepojo;
-import com.example.trainingnew.model.UserPojo;
+import com.example.trainingnew.model.Usermodel;
 import com.example.trainingnew.reprository.UserRepo;
 import com.example.trainingnew.services.TrainingServices;
 
@@ -29,34 +28,37 @@ public class TrainingController {
 
 	//show all 
 	@RequestMapping(value = "/show", method = RequestMethod.GET)
-	public List<UserPojo> showData() {
+	public List<Usermodel> showData() {
 		return services.getAllData();
 	}
 
 	// insert new data
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public UserPojo insertData(@Valid @RequestBody UserPojo note) {
+	public Usermodel insertData(@Valid @RequestBody Usermodel note) {
+		
 		return services.createData(note);
 	}
 	
 	//insert data with role
 //	@RequestMapping(value = "/adding", method = RequestMethod.POST)
-//	public UserPojo insertDataWithRole(@Valid @RequestBody Rolepojo note) {
+//	public UserPojo insertDataWithRole(@Valid @RequestBody UserPojo note) {
 //		
-//		UserPojo up=userrepo.findOneById(note.getId());
-//		up.getRoles().add(note);
+//		UserPojo up=new UserPojo();
+//		Rolepojo rp=new Rolepojo();
+//		
+//		up.getRoles().add(rp);
 //		return userrepo.save(up);
 //	}
 
 	//get single data by id
 	@RequestMapping(value="/show/{id}",method=RequestMethod.POST)
-	public UserPojo getById(@PathVariable(value="id") Long id) {
+	public Usermodel getById(@PathVariable(value="id") Long id) {
 		return services.getDataById(id);
 	}
 		
 	//update a data with id
 	@RequestMapping(value="/update/{id}",method=RequestMethod.PUT)
-	public UserPojo update(@PathVariable(value="id") Long id,@RequestBody UserPojo allDetails) {
+	public Usermodel update(@PathVariable(value="id") Long id,@RequestBody Usermodel allDetails) {
 		return services.updateData(id, allDetails);
 	}
 		

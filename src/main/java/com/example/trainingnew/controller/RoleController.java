@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.trainingnew.model.Rolepojo;
-import com.example.trainingnew.model.UserPojo;
+import com.example.trainingnew.model.Rolemodel;
+import com.example.trainingnew.model.Usermodel;
 import com.example.trainingnew.reprository.RoleRepo;
 import com.example.trainingnew.reprository.UserRepo;
 
@@ -26,23 +26,23 @@ public class RoleController {
 	UserRepo userrepo;
 	
 	@RequestMapping(value="/showrole",method= RequestMethod.GET)
-	public List<Rolepojo> showrole() {
+	public List<Rolemodel> showrole() {
 		return rolerepo.findAll();
 	}
 	
 	
 	//createRoledataServices
 	@RequestMapping(value = "/insertrole", method = RequestMethod.POST)
-		public Rolepojo createRole(@RequestBody Rolepojo note) {
+		public Rolemodel createRole(@RequestBody Rolemodel note) {
 			
 			return rolerepo.save(note);
 		}
 	
 	
 	@RequestMapping(value = "/adding", method = RequestMethod.POST)
-	public UserPojo insertDataWithRole(@Valid @RequestBody Rolepojo note) {
+	public Usermodel insertDataWithRole(@Valid @RequestBody Rolemodel note) {
 		
-		UserPojo up=userrepo.findOneById(note.getId());
+		Usermodel up=userrepo.findOneById(note.getId());
 		up.getRoles().add(note);
 		return userrepo.save(up);
 	}

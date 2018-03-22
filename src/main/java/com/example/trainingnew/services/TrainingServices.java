@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.trainingnew.exception.ResourcesNotFoundException;
-import com.example.trainingnew.model.UserPojo;
+import com.example.trainingnew.model.Usermodel;
 import com.example.trainingnew.reprository.RoleRepo;
 import com.example.trainingnew.reprository.UserRepo;
 
@@ -22,34 +22,34 @@ public class TrainingServices {
 	RoleRepo rolerepo;
 	
 	//getallServices
-	public List<UserPojo> getAllData() {
+	public List<Usermodel> getAllData() {
 		return userrepo.findAll();
 	}
 	
 //	//createdataServices
-	public UserPojo createData(UserPojo note) {
+	public Usermodel createData(Usermodel note) {
 		return userrepo.save(note);
 	}
 		
 	//getdatabyidServies
-	public UserPojo getDataById(Long id) {
+	public Usermodel getDataById(Long id) {
 		return userrepo.findById(id).orElseThrow(()-> new ResourcesNotFoundException("Note", "Id", id));
 	}
 	
 	//updateDataByidServices
-	public UserPojo updateData(Long noteid,UserPojo noteDetails) {
-		UserPojo note = userrepo.findById(noteid).orElseThrow(()-> new ResourcesNotFoundException("Note","id", noteid));
+	public Usermodel updateData(Long noteid,Usermodel noteDetails) {
+		Usermodel note = userrepo.findById(noteid).orElseThrow(()-> new ResourcesNotFoundException("Note","id", noteid));
 		note.setUsername(noteDetails.getUsername());
 		note.setEmail(noteDetails.getEmail());
 		note.setStatus(noteDetails.getStatus());
 		note.setPassword(noteDetails.getPassword());
-		UserPojo updatedNote = userrepo.save(note);
+		Usermodel updatedNote = userrepo.save(note);
 		return updatedNote;
 	}
 	
 	//DeleteDataSevices
 	public ResponseEntity<?> deletData(Long noteId) {
-	    UserPojo note = userrepo.findById(noteId)
+	    Usermodel note = userrepo.findById(noteId)
 	            .orElseThrow(() -> new ResourcesNotFoundException("Note", "id", noteId));
 	    userrepo.delete(note);
 	    return ResponseEntity.ok().build();

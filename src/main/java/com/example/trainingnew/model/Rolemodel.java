@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="roles")
-public class Rolepojo {
+public class Rolemodel {
 	
 	@Id
 	@GeneratedValue( strategy= GenerationType.IDENTITY)
@@ -27,7 +27,7 @@ public class Rolepojo {
                 CascadeType.MERGE
             },
             mappedBy = "roles")
-	private Set<UserPojo> users = new HashSet<>();
+	private Set<Usermodel> users = new HashSet<>();
 
 	
 //	public Rolepojo(long id) {

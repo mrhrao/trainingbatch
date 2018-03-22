@@ -2,10 +2,10 @@ package com.example.trainingnew.reprository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.trainingnew.model.UserPojo;
+import com.example.trainingnew.model.Usermodel;
 
-public interface UserRepo extends JpaRepository<UserPojo ,Long>{
+public interface UserRepo extends JpaRepository<Usermodel ,Long>{
 
-	UserPojo findOneById(long id);
+	Usermodel findOneById(long id);
 
 }

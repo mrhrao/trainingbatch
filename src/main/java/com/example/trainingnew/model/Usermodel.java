@@ -29,7 +29,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdOn",}, 
 allowGetters = true)
-public class UserPojo{
+public class Usermodel{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -55,7 +55,7 @@ public class UserPojo{
 	 @JoinTable(name = "users_roles",
      joinColumns = { @JoinColumn(name = "user_id") },
      inverseJoinColumns = { @JoinColumn(name = "role_id") })
-    private Set<Rolepojo> roles = new HashSet<>();
+    private Set<Rolemodel> roles = new HashSet<>();
 
 	public long getId() {
 		return id;
@@ -121,11 +121,11 @@ public class UserPojo{
 		this.phoneNo = phoneNo;
 	}
 
-	public Set<Rolepojo> getRoles() {
+	public Set<Rolemodel> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Set<Rolepojo> roles) {
+	public void setRoles(Set<Rolemodel> roles) {
 		this.roles = roles;
 	}
 
