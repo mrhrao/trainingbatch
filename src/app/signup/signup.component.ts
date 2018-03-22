@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-
+  private formData:any = {};
   constructor() { }
 
   ngOnInit() {
   }
-
+submitLogin()
+{
+  console.log(this.formData)
+}
 }

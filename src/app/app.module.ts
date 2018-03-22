@@ -12,7 +12,10 @@ import { SettingComponent } from './setting/setting.component';
 import { BuyComponent } from './buy/buy.component';
 import { SellComponent } from './sell/sell.component';
 import { SubmitComponent } from './submit/submit.component';
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import {MainService} from './service/mainService';
+import { HttpModule } from '@angular/http';
 
 const appRoutes: Routes = [
   { path: 'signup', component: SignupComponent },
@@ -24,7 +27,7 @@ const appRoutes: Routes = [
    { path: 'buy', component: BuyComponent },
    { path: 'sell', component: SellComponent },
   { path: '',
-    redirectTo: '/signup',
+    redirectTo: '/signin',
     pathMatch: 'full'
   },
   { path: '**', component: LoginComponent }
@@ -47,6 +50,9 @@ const appRoutes: Routes = [
   
   imports: [
     BrowserModule,
+    HttpModule,
+    NgbModule.forRoot(),
+    ModalModule.forRoot(),
     RouterModule.forRoot(
 
       appRoutes,
@@ -55,7 +61,7 @@ const appRoutes: Routes = [
     // other imports here
     FormsModule
   ],
-  providers: [],
+  providers: [MainService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

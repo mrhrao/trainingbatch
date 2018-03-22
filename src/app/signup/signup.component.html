@@ -1,47 +1,90 @@
-body>
 
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100 p-t-50 p-b-90">
-				<form class="login100-form validate-form flex-sb flex-w">
-					<span class="login100-form-title p-b-51">
-						Login
-					</span>
+<div class="col-sm-12" id="banner">
+	
+    <div id="background"><div class="banner-image"></div></div>
+    
+    <section class="dark center">
+    <div class="header ">
+    
+    
+              <form action="" (ngSubmit)="submitLogin()" #loginForm="ngForm" method="post" name="Login_Form" class="form-signin">       
+                      <h3 class="form-signin-heading">Welcome! Sign Up To Continue</h3>
+                        <hr class="colorgraph"><br>
+                        
+                       
+                        <input [(ngModel)]="formData.text1" #flname="ngModel" type="text"
+                        name="fl" placeholder="First Name" minlength="10" 
+                        [ngClass]="{'error':flname.errors && flname.touched}" 
+                        class="form-control" id="fl3" 
+                        required="" autofocus="">
+                       
+                        <div *ngIf="flname.errors && flname.touched" class="red error">
+                              <div *ngIf="flname.errors.required">This is required field.</div>
+                              <div *ngIf="flname.errors.minlength">minimum 10 required</div>
+                              </div>
+                        
+                        
+                        
+                        
+                        
+                        <input [(ngModel)]="formData.email" #username="ngModel" type="email"
+                        name="em" placeholder="Email" minlength="10" 
+                        [ngClass]="{'error':username.errors && username.touched}" 
+                        class="form-control" id="inputEmail3" required="" autofocus="">
+                       
+                        <div *ngIf="username.errors && username.touched" class="red error">
+                              <div *ngIf="username.errors.required">This is required field.</div>
+                              <div *ngIf="username.errors.minlength">minimum 10 required</div>
+                              </div>
+  
+                      
+                            
+                              
+                        <input [(ngModel)]="formData.text2" #coun="ngModel" type="text"
+                        name="co" placeholder="Country"
+                        [ngClass]="{'error':coun.errors && coun.touched}" 
+                        class="form-control" id="fl4" 
+                        required="" autofocus="">
+                       
+                        <div *ngIf="coun.errors && coun.touched" class="red error">
+                              <div *ngIf="coun.errors.required">This is required field.</div>
+                              </div>
 
 
-					<div class="wrap-input100 validate-input m-b-16" data-validate="Username is required">
-						<input class="input100" type="text" name="username" placeholder="Username">
-						<span class="focus-input100"></span>
-					</div>
+                      <input [(ngModel)]="formData.password" #pwd="ngModel" name="pwd" minlength="10" 
+                      [ngClass]="{'errors':pwd.errors && pwd.touched}" class="form-control" type="password" placeholder="Password" required="">     		  
+           
+                      <div *ngIf="pwd.errors && pwd.touched" class="red error">
+                            <div *ngIf="pwd.errors.required">This is required field.</div>
+                            <div *ngIf="pwd.errors.minlength">minimum 10 required</div>
+                            </div>
+                            
 
 
-					<div class="wrap-input100 validate-input m-b-16 alert-validate" data-validate="Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Password">
-						<span class="focus-input100"></span>
-					</div>
+                      <br>
+                      <input [(ngModel)]="formData.password" #pwd="ngModel" name="pwd" minlength="10" 
+                      [ngClass]="{'errors':pwd.errors && pwd.touched}" class="form-control" type="password" placeholder="Password" required="">     		  
+           
+                      <div *ngIf="pwd.errors && pwd.touched" class="red error">
+                            <div *ngIf="pwd.errors.required">This is required field.</div>
+                            <div *ngIf="pwd.errors.minlength">minimum 10 required</div>
+                            </div>
+  
 
-					<div class="flex-sb-m w-full p-t-3 p-b-24">
-						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
-								Remember me
-							</label>
-						</div>
 
-						<div>
-							<a href="#" class="txt1">
-								Forgot?
-							</a>
-						</div>
-					</div>
 
-					<div class="container-login100-form-btn m-t-17">
-						<button class="login100-form-btn">
-							Login
-						</button>
-					</div>
-
-				</form>
-			</div>
-		</div>
-	</div>
+                        <button type="submit" [disabled]="loginForm.invalid" class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit">Login</button>  			
+                        <div class="col-sm-12 margin-top form-group">
+                                                      <label>
+                             Not a member? <a style="color:blue;cursor: pointer;">Sign Up</a> here
+                              </label>
+                          </div>
+                      </form>
+              
+              </div>
+    
+    </section>
+    
+    </div>
+  
+  
