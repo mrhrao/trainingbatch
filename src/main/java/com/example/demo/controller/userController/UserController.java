@@ -32,6 +32,7 @@ public class UserController {
 	@RequestMapping(value="/addrole",method=RequestMethod.POST)
 	public void addRole(@RequestBody RoleModel data)
 	{
+		
 		userservice.addRole(data);
 	}
 	private RoleModel addDataInRoleModel(List<RoleModel> data)

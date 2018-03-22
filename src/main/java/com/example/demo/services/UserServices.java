@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dto.roleDTO.RoleDTO;
 import com.example.demo.model.userModel.RoleModel;
 import com.example.demo.model.userModel.UserModel;
+import com.example.demo.model.userModel.WalletModel;
 import com.example.demo.repoINterface.RoleRepository;
 import com.example.demo.repoINterface.UserRepository;
 
@@ -31,8 +32,12 @@ public class UserServices {
 	RoleRepository roleData;
 	
 	public UserModel saveUserData(UserModel data) {
-		
-		Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+		WalletModel walletModel=new WalletModel();
+		long leftLimit = 1L;
+	    long rightLimit = 10000000000L;
+	    long randemId = leftLimit + (long) (Math.random() * (rightLimit - leftLimit));
+	    walletModel.setRandemId(randemId);
+	  	Format formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Date today = Calendar.getInstance().getTime(); 
 		String date = formatter.format(today);
 		UserModel model=new UserModel();
@@ -44,6 +49,8 @@ public class UserServices {
 		model.setUserName(data.getUserName());
 		model.setStatus(data.isStatus());
 		model.setDate(date);
+		model.getWalletModel().add(walletModel);
+		 walletModel.setUserdata(model);
 		return userData.save(model);
 	}
 	

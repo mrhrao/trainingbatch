@@ -1,22 +1,46 @@
 package com.example.demo.model.userModel;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
+import com.example.demo.constant.WalletEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
 public class WalletModel {
 
 @Id
 @GeneratedValue(strategy=GenerationType.IDENTITY)	
-private long walletId;	
+private long id;	
 private int balance;
 private int shadoBalance;
-private String walletType;
-public long getWalletId() {
-	return walletId;
+private String walletType=WalletEnum.fiat.toString();
+private long randemId;
+@ManyToOne
+@JoinColumn(name = "User_id")
+@JsonIgnore
+private UserModel userdata;
+public long getId() {
+	return id;
 }
-public void setWalletId(long walletId) {
-	this.walletId = walletId;
+public UserModel getUserdata() {
+	return userdata;
+}
+public long getRandemId() {
+	return randemId;
+}
+public void setRandemId(long randemId) {
+	this.randemId = randemId;
+}
+public void setUserdata(UserModel userdata) {
+	this.userdata = userdata;
+}
+public void setId(long id) {
+	this.id = id;
 }
 public int getBalance() {
 	return balance;

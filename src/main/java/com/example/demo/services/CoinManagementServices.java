@@ -16,7 +16,10 @@ CoinManagementRepository coinDate;
 
 public CoinManagementModel addAllCoinData(CoinManagementModel data)
 {
-	return coinDate.save(data);
+	CoinManagementModel model=coinDate.findByCoinName(data.getCoinName());
+	if(model==null)
+	coinDate.save(data);
+return data;
 }
 public void deleteCoinById(Long id)
 {
