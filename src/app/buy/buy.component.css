@@ -1,0 +1,19 @@
+.a1{
+    width:100%;
+    position: relative;
+}
+
+.container{
+width: 50%;float: left;
+position:absolute;
+background-color: indianred;
+margin-left: 50%;
+height:400px;
+}
+.cc{
+    width:50%;
+    float: right;
+    position: absolute;
+    background-color: grey;
+    height:400px;
+}

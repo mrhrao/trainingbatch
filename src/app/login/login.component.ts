@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import{MainService}from '../service/mainService'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
   private formData:any = {};
-  constructor() { }
+  constructor(private mainService:MainService) { }
 
   ngOnInit() {
+    console.log(this.mainService.obj);
+    console.log(this.mainService.succes());
+    this.mainService.overallDetails().subscribe(succes=>
+    {console.log('succes',succes)})
   }
   submitLogin()
   {

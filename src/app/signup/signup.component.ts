@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import{MainService}from '../service/mainService'
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupComponent implements OnInit {
 
-  constructor() { }
+  constructor(private mainService:MainService) { }
 
   ngOnInit() {
+    console.log(this.mainService.obj)
+    console.log(this.mainService.succes())
   }
 
 }

@@ -1,0 +1,20 @@
+.view{
+    width:100%;
+    background-color: khaki;
+    position: relative;
+}
+.view1{
+
+    width:50%;
+    background-color: grey;
+    position:absolute;
+    float:left;
+}
+.view2{
+    width:100%;
+    background-color: ivory;
+    position :absolute;
+    float:right;
+
+
+}
