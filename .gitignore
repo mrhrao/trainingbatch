@@ -8,16 +8,17 @@ target/
 .project
 .settings
 .springBeans
-**/logs
+.log
 **/logfiles
+**/logs
 
 ### IntelliJ IDEA ###
 .idea
 *.iws
 *.iml
 *.ipr
-**/logs
 **/logfiles
+**/logs
 
 ### NetBeans ###
 nbproject/private/
@@ -26,5 +27,5 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
-**/logs
 **/logfiles
+**/logs
