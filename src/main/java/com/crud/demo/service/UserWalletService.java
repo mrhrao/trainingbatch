@@ -23,11 +23,12 @@ public class UserWalletService {
 	
 	
 	
-	public void createWallet(User user) 
+	public String createWallet(User user) 
 	{
 		User existingUser=userJpaRepository.findOne(user.getId());
 		
 		Set<UserWallet> setOfUserWallet=existingUser.getUserWallet();
+		String msg=null;
 		
 		for (UserWallet userWalletObject:user.getUserWallet())
 		{
@@ -48,19 +49,36 @@ public class UserWalletService {
 		    existingUser.setUserWallet(setOfUserWallet);
 		    existingUser.getUserWallet().forEach(wallet->wallet.setUser(user));//important
 		    userJpaRepository.save(existingUser);
+		    msg="Your wallet created successfully";
 		}
+		return msg;
 	}
 
-	public void withdrawAmount(UserWallet userWallet) {
-		/*UserWallet existingUserWallet=userWalletJpaRepository.findByIdAndWalletType(userWallet.getWallet_id(), userWallet.getWalletType());
-		System.out.println("::::::::::"+existingUserWallet);*/
-		
-		
+	public String withdrawAmount(UserWallet userWallet) {
+UserWallet existingUserWallet=userWalletJpaRepository.findByIdAndWalletType(userWallet.getWallet_id(), userWallet.getWalletType());
+		if((existingUserWallet!=null) && ( existingUserWallet.getBalance()>=userWallet.getBalance()))
+		{
+		float remainingBalance=existingUserWallet.getBalance()-userWallet.getBalance();
+		existingUserWallet.setBalance(remainingBalance);
+		userWalletJpaRepository.save(existingUserWallet);
+		return "You have withdrawl successfully"+"Your remaing balance is"+remainingBalance;
+		}
+		else
+		{ return "You don't have sufficient balance to withdraw or this type of wallet doesn't exist";}
+	
+
 	}
-
-	/*public void depositAmount(Integer userid, Float depositamount) {
-		// TODO Auto-generated method stub
-		
-	}*/
-
-}
+	public String depositAmount(UserWallet userWallet) {
+		UserWallet existingUserWallet=userWalletJpaRepository.findByIdAndWalletType(userWallet.getWallet_id(), userWallet.getWalletType());
+		System.out.println("::::::::::"+existingUserWallet);
+		if(existingUserWallet!=null)
+		{
+		float newBalance=existingUserWallet.getBalance()+userWallet.getBalance();
+		existingUserWallet.setBalance(newBalance);
+		userWalletJpaRepository.save(existingUserWallet);
+		return "Your amount is successfully added"+"Your updated amount is"+newBalance;
+		}
+		else
+		{return "This wallet does not exist";}	
+	}
+	}

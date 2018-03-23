@@ -17,17 +17,20 @@ public class UserWalletController {
 	
 	
 	@RequestMapping("/create-wallet")
-     public void createWallet(@RequestBody User user){
+     public String createWallet(@RequestBody User user){
 		
-		userWalletService.createWallet(user);	
+		
+		return userWalletService.createWallet(user);
 	}
  
 	@RequestMapping("/withdraw-amount")
-    public void withdrawAmount(@RequestBody UserWallet userWallet){
-		userWalletService.withdrawAmount(userWallet);	
+    public String withdrawAmount(@RequestBody UserWallet userWallet){
+		
+		return userWalletService.withdrawAmount(userWallet);
 	}
-	/*@RequestMapping("/depoisit-amount")
-    public void depositAmount(@RequestParam Integer userid,@RequestParam Float depositamount){
-		userWalletService.depositAmount(userid,depositamount);	
-	}*/
+	@RequestMapping("/depoisit-amount")
+    public String depositAmount(@RequestBody UserWallet userWallet){
+			
+		return userWalletService.depositAmount(userWallet);
+	}
 }
