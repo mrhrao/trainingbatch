@@ -9,8 +9,9 @@
 
 .for_image{
     height: 170px;
-    width: 400px;
+    width: 200px;
     position: absolute;
+    overflow: hidden;
 }
 
 .login_form{
@@ -25,8 +26,9 @@
 
 .form{
     width:400px;
-    height: auto;
+    height: 500px;
     position: absolute;
+    overflow: hidden;
     margin-left: 50%;
     margin-top: 25%;
     transform: translate(-50%,-50%);
