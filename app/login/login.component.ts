@@ -24,3 +24,5 @@ export class LoginComponent implements OnInit {
     console.log(this.formData)
   }
 }
+
+this.mainService.overallDetails().subscribe( succes=> { console.log('succes',succes) })
