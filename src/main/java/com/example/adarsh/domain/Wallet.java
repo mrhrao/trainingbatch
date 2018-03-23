@@ -12,10 +12,18 @@ public class Wallet {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 
 	private Integer id;
-	private Integer balance=0;
-	private Integer shadowBalance=0;
+	private Integer balance = 0;
+	private Integer shadowBalance = 0;
 	private String walletType;
 	private Integer randomId;
+
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name = "User_id")
+	 * 
+	 * @JsonIgnore private User userdata;
+	 */
 
 	public long getId() {
 		return id;

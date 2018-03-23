@@ -30,6 +30,15 @@ public class User {
 		this.role = role;
 	}
 
+	/*
+	 * @OneToMany(mappedBy = "userdata", cascade = CascadeType.ALL) private
+	 * List<Wallet> wallet = new ArrayList<>();
+	 * 
+	 * public List<Wallet> getWallet() { return wallet; }
+	 * 
+	 * public void setWallet(List<Wallet> wallet) { this.wallet = wallet; }
+	 */
+
 	@ManyToOne
 	@JsonBackReference
 	private Role role;
