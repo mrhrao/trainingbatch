@@ -3,16 +3,30 @@
     width:100%;
     background-color: "honeydew";
     position: relative;
-    color: white;
+    color: black;
     
     }
-    
+        
+    .l1{
+        text-align: center;
+        color: teal;
+        font-size: 50px;
+
+
+    }
+  .in{
+    align-self: auto;;
+ margin:5px;
+ padding :2px;
+
+
+  }
     .d2{
     
     
         height:400px;
         width:auto;
-        background-color: rgb(142, 196, 240);
+        background-color: silver;
         position:absolute;
         top:50%;
         left:50%;
