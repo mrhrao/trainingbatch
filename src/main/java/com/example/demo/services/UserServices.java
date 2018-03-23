@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.roleDTO.RoleDTO;
+import com.example.demo.dto.userDTO.ResetPasswordDTO;
 import com.example.demo.model.userModel.RoleModel;
 import com.example.demo.model.userModel.UserModel;
 import com.example.demo.model.userModel.WalletModel;
@@ -108,6 +109,23 @@ public class UserServices {
 			data.add(dto);
 		}
 		return data;
+	}
+	//-----------------
+	public UserModel userLogin(String email,String password)
+	{
+		return userData.findOneByEmailAndPassword(email, password);
+	}
+	//-------
+	public UserModel resetPassword(ResetPasswordDTO resetdata)
+	{
+		UserModel user=userData.findOneByEmailAndPassword(resetdata.getEmail(), resetdata.getOldPassword());
+		if(user!=null)
+		{
+			user.setPassword(resetdata.getNewPassword());
+			userData.save(user);
+		}
+		return user;
+		
 	}
 }
 
