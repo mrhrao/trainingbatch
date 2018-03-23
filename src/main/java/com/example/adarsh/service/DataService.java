@@ -39,6 +39,7 @@ public class DataService {
 		user1.setIsActive(user.getIsActive());
 		user1.setPassword(user.getPassword());
 		user1.setDate(date);
+		System.out.println("....." + user1);
 		return userRepository.save(user1);
 
 	}
