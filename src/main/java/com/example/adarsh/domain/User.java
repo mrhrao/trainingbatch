@@ -1,10 +1,13 @@
 package com.example.adarsh.domain;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -38,6 +41,20 @@ public class User {
 	 * 
 	 * public void setWallet(List<Wallet> wallet) { this.wallet = wallet; }
 	 */
+	
+	
+	@OneToMany
+	private List<Wallet> wallets;
+	
+	
+
+	public List<Wallet> getWallets() {
+		return wallets;
+	}
+
+	public void setWallets(List<Wallet> wallets) {
+		this.wallets = wallets;
+	}
 
 	@ManyToOne
 	@JsonBackReference

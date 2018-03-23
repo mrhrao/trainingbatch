@@ -36,13 +36,14 @@ public class AuthController {
 	}
 
 	@RequestMapping(value = "/sign_up", method = RequestMethod.POST)
-	public User saveUser(@RequestBody User user) {
+	public String saveUser(@RequestBody User user) {
 		return dataService.saveUser(user);
 
 	}
 
 	@RequestMapping("/alluser")
 	public List<User> getAllUser() {
+
 		return dataService.getAllUsers();
 	}
 

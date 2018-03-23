@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Wallet {
@@ -17,14 +18,11 @@ public class Wallet {
 	private String walletType;
 	private Integer randomId;
 
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name = "User_id")
-	 * 
-	 * @JsonIgnore private User userdata;
-	 */
-
+	
+	@ManyToOne
+	private User user;
+	
+	
 	public long getId() {
 		return id;
 	}
@@ -64,5 +62,17 @@ public class Wallet {
 	public void setRandomId(Integer randomId) {
 		this.randomId = randomId;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	
+	
+	
 
 }
