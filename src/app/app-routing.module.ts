@@ -1,7 +1,6 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -21,41 +20,43 @@ import { HeaderComponent } from './header/header.component';
 import { LinkComponent } from './link/link.component';
 import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
-import { AppRoutingModule } from './app-routing.module';
 
+
+
+const appRoutes: Routes = [
+  { path: 'signup', component: SignupComponent },
+   { path: 'login', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent },
+   { path: 'resetPassword', component: ResetPasswordComponent },
+   { path: 'forgetPassword', component: ForgetPasswordComponent },
+   { path: 'setting', component: SettingComponent },
+   { path: 'buy', component: BuyComponent },
+   { path: 'sell', component: SellComponent },
+   { path: 'nav', component: NavComponent },
+   { path: 'home', component: HomeComponent },
+   { path: 'footer', component: FooterComponent },
+  { path: '',
+    redirectTo: '/signin',
+    pathMatch: 'full'
+  },
+  { path: '**', component: LoginComponent }
+];
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SignupComponent,
-    LoginComponent,
-   DashboardComponent,
-    ResetPasswordComponent,
-    ForgetPasswordComponent,
-    SettingComponent,
-    BuyComponent,
-    SellComponent,
-    SubmitComponent,
-    HomeComponent,
-    HeaderComponent,
-    LinkComponent,
-    NavComponent,
-    FooterComponent
-  ],
+  
   
   imports: [
-    AppRoutingModule,
-    BrowserModule,
-    HttpModule,
-    NgbModule.forRoot(),
-    CarouselModule.forRoot(),
-  
-    ModalModule.forRoot(),
+    
+    RouterModule.forRoot(
+
+      appRoutes,
+      // { enableTracing: true } /ng / <-- debugging purposes only
+    ),
     // other imports here
     FormsModule
   ],
-  providers: [MainService],
-  bootstrap: [AppComponent]
+exports:[RouterModule]
+
 })
-export class AppModule { }
+export class AppRoutingModule { }
