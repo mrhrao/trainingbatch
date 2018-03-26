@@ -25,7 +25,7 @@ public class DataService {
 	@Autowired
 	RoleRepository roleRepository;
 
-	public String saveUser(User user) {
+	public User saveUser(User user) {
 
 		Format formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Date today = Calendar.getInstance().getTime();
@@ -39,9 +39,7 @@ public class DataService {
 		user1.setIsActive(user.getIsActive());
 		user1.setPassword(user.getPassword());
 		user1.setDate(date);
-		System.out.println("....." + user1);
-		 userRepository.save(user1);
-		return "added successfuly";
+		return userRepository.save(user1);
 
 	}
 

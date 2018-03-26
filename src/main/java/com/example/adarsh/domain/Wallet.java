@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class Wallet {
@@ -13,16 +12,11 @@ public class Wallet {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 
 	private Integer id;
-	private Integer balance = 0;
-	private Integer shadowBalance = 0;
+	private Integer balance=0;
+	private Integer shadowBalance=0;
 	private String walletType;
 	private Integer randomId;
 
-	
-	@ManyToOne
-	private User user;
-	
-	
 	public long getId() {
 		return id;
 	}
@@ -62,17 +56,5 @@ public class Wallet {
 	public void setRandomId(Integer randomId) {
 		this.randomId = randomId;
 	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-	
-	
-	
-	
 
 }
