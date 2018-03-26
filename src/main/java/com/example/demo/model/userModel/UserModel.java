@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -32,13 +33,17 @@ public class UserModel  {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(unique = true)
 	private String userName;
+	@Column(unique = true)
 	private String email;
+	@Column(unique = true)
 	private String mobileNo;
 	private boolean status;
 	private String country;
 	private String password;
-	private String date;
+	private String createdOn;
 	@OneToMany(mappedBy = "userdata", cascade = CascadeType.ALL)
 	private List<WalletModel> WalletModel=new ArrayList<>();
 	public List<WalletModel> getWalletModel() {
@@ -65,11 +70,12 @@ public class UserModel  {
 	public void setRole(List<RoleModel> role) {
 		this.role = role;
 	}
-	public String getDate() {
-		return date;
+	
+	public String getCreatedOn() {
+		return createdOn;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setCreatedOn(String createdOn) {
+		this.createdOn = createdOn;
 	}
 	public Long getId() {
 		return id;

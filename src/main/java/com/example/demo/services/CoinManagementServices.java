@@ -14,23 +14,35 @@ public class CoinManagementServices {
 @Autowired
 CoinManagementRepository coinDate;
 
-public CoinManagementModel addAllCoinData(CoinManagementModel data)
+public String addAllCoinData(CoinManagementModel data)
 {
 	CoinManagementModel model=coinDate.findByCoinName(data.getCoinName());
 	if(model==null)
-	coinDate.save(data);
-return data;
+	{
+	CoinManagementModel result=coinDate.save(data);
+	if(result!=null)
+		return "sucess";
+	}
+return "error";
 }
-public void deleteCoinById(Long id)
+public String deleteCoinById(Long id)
 {
+	CoinManagementModel result=coinDate.findOne(id);
+	if(result!=null) {
 	coinDate.delete(id);
+	return "success";}
+	return "error";
+	
 }
 
-public CoinManagementModel updataCoinData(CoinManagementModel data)
+public String updataCoinData(CoinManagementModel data)
 {
 	CoinManagementModel model=coinDate.findByIdAndCoinName(data.getId(), data.getCoinName());
 	model.setPrice(data.getPrice());
-	return coinDate.save(model);
+	CoinManagementModel result= coinDate.save(model);
+	if(result!=null)
+		return "sucess";
+return "error";
 	
 }
 public List<CoinManagementModel> findAllCoin()

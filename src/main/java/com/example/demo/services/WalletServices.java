@@ -19,7 +19,7 @@ WalletRepostiory walletData;
 
 @Autowired
 UserRepository userData;
-public WalletModel addWalletToUser(WalletModel data)
+public String addWalletToUser(WalletModel data)
 {
 	long leftLimit = 1L;
     long rightLimit = 10000000000L;
@@ -44,33 +44,38 @@ public WalletModel addWalletToUser(WalletModel data)
 			}
 	}
 	if(check)
-	userData.save(userModel);
-	return walletModel;	
+	{
+		UserModel result=userData.save(userModel);
+		if(result!=null)
+			return "success";
+	}
+	return "error";	
 }
 
 //---------------------
-public WalletModel AddMoneyInWallet(WalletModel data)
+public String AddMoneyInWallet(WalletModel data)
 {
 	WalletModel model=walletData.findOne(data.getId());
-	//model.setBalance(data.getBalance());
 	int walletBalance=model.getBalance();
 	walletBalance=walletBalance+data.getBalance();
 	model.setBalance(walletBalance);
 	model.setShadoBalance(walletBalance);
-	walletData.save(model);
-	return model;
+	WalletModel result=walletData.save(model);
+	if(result!=null)
+	return "success";
+	return "error";
 }
 //---------------------
-public WalletModel withdrawMoneyInWallet(WalletModel data)
+public String withdrawMoneyInWallet(WalletModel data)
 {
 	WalletModel model=walletData.findOne(data.getId());
-	//model.setBalance(data.getBalance());
 	int walletBalance=model.getBalance();
 	walletBalance=walletBalance-data.getBalance();
 	model.setBalance(walletBalance);
 	model.setShadoBalance(walletBalance);
-	//model.setRandemId(walletBalance);
-	walletData.save(model);
-	return model;
+	WalletModel result=walletData.save(model);
+	if(result!=null)
+	return "success";
+	return "error";
 }
 }

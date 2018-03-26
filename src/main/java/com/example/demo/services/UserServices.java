@@ -1,25 +1,31 @@
 package com.example.demo.services;
 
+import static org.mockito.Mockito.never;
+
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 import javax.management.relation.Role;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.roleDTO.RoleDTO;
 import com.example.demo.dto.userDTO.ResetPasswordDTO;
 import com.example.demo.model.userModel.RoleModel;
 import com.example.demo.model.userModel.UserModel;
+import com.example.demo.model.userModel.VerifyModel;
 import com.example.demo.model.userModel.WalletModel;
 import com.example.demo.repoINterface.RoleRepository;
 import com.example.demo.repoINterface.UserRepository;
+import com.example.demo.repoINterface.VerifyRepository;
 
 
 
@@ -32,7 +38,17 @@ public class UserServices {
 	@Autowired
 	RoleRepository roleData;
 	
-	public UserModel saveUserData(UserModel data) {
+	@Autowired
+	MailServices mailServices;
+	
+	@Autowired 
+	SmsServieces smsServieces;
+	
+	@Autowired
+	VerifyRepository verifyData;
+	public String saveUserData(UserModel data) {
+		Random rand = new Random();
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		WalletModel walletModel=new WalletModel();
 		long leftLimit = 1L;
 	    long rightLimit = 10000000000L;
@@ -46,13 +62,32 @@ public class UserServices {
 		model.setEmail(data.getEmail());
 		model.setMobileNo(data.getMobileNo());
 		model.setId(data.getId());
-		model.setPassword(data.getPassword());
+		model.setPassword(passwordEncoder.encode(data.getPassword()));
 		model.setUserName(data.getUserName());
 		model.setStatus(data.isStatus());
-		model.setDate(date);
+		model.setCreatedOn(date);
 		model.getWalletModel().add(walletModel);
-		 walletModel.setUserdata(model);
-		return userData.save(model);
+		RoleModel role=roleData.findOneByUserRole("user");
+		model.getRole().add(role);
+		walletModel.setUserdata(model);
+		UserModel checkData=userData.findOneByEmailAndMobileNo(data.getEmail(),data.getMobileNo());
+		if(checkData!=null)
+			return "error";
+		userData.save(model);
+		try {
+			int otp=rand.nextInt(1000000);
+			VerifyModel verify=new VerifyModel();
+			verify.setTokenOtp(otp);
+			verify.setUserName(model.getUserName());
+			verify.setDate(date);
+			verifyData.save(verify);
+			mailServices.sendMail(data.getEmail(),otp);
+			//smsServieces.sendSMS(otp);
+		} catch (Exception e) {
+		
+			e.printStackTrace();
+		}
+		return "success";
 	}
 	
 	public List<UserModel> findAll()
@@ -61,29 +96,30 @@ public class UserServices {
 		
 	}
 	
-//	public List<RoleModel> findOneByUserName(String name)
-//	{
-//		
-//		UserModel model= userData.findOneByUserName(name);
-//		List<RoleModel> models=roleData.findAllByUserName(model.getUserName());
-//		return models;
-//	}
-	public void addRole(RoleModel data)
+
+	public String addRole(RoleModel data)
 	{
 		
 		RoleModel model =roleData.findOneByUserRole(data.getUserRole());
 	if(model==null)
 		{
 		roleData.save(data);
+		return "success";
 		}
+	return "error";
 		}
 	
-	public void addRoleToUser(RoleModel model) {
+	public String addRoleToUser(RoleModel model) {
 		UserModel user=userData.findOne(model.getId());
 		RoleModel role=roleData.findOneByUserRole(model.getUserRole());
+		if(user!=null&&role!=null)
+		{
 		user.getRole().add(role);
-		role.getUser().add(user);
 		userData.save(user);
+		return "success";
+		}
+		return "error";
+		
 				
 	}
 
@@ -126,6 +162,17 @@ public class UserServices {
 		}
 		return user;
 		
+	}
+	//-verifyuser-----
+	public String verifyUser(VerifyModel data)
+	{
+		VerifyModel verify=verifyData.findOneByUserNameAndTokenOtp(data.getUserName(),data.getTokenOtp());
+		if(verify!=null)
+		{
+		verifyData.delete(verify.getId());
+		return "success";
+		}
+		return "error";
 	}
 }
 

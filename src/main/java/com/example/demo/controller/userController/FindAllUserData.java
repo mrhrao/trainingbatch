@@ -48,10 +48,4 @@ public class FindAllUserData {
 		
 	}
 
-//	@RequestMapping(value="/showRoleByUserName",method=RequestMethod.GET)
-//	@ResponseBody
-//	private List<RoleModel> getUserByRole(@RequestParam("userName") String userName)
-//	{
-//		return userData.findOneByUserName(userName);
-//	}
 }

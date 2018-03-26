@@ -16,9 +16,12 @@ DeleteService userDelete;
 
 	
 @RequestMapping(value="/deleteById",method=RequestMethod.GET)
-public void deleteById(@RequestParam("id") String id)
+public String deleteById(@RequestParam("id") Long id)
 {
-	userDelete.deleteById(id);
-	
+	String result=userDelete.deleteById(id);
+	System.out.println(result);
+	if(result=="success")
+	return "success";
+	return "error";
 }
 }

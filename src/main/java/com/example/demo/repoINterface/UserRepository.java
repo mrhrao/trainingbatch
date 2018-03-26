@@ -12,9 +12,11 @@ public interface UserRepository extends JpaRepository<UserModel, Long> {
 	
 	UserModel findByUserName(String username);
 	
-//	@Query("select u from UserModel u left join fetch u.role")
-//	public List<UserModel> findAll();
-	public UserModel findByIdAndUserName(long id,String userName);
+
+	public UserModel findByIdAndUserName(Long id,String userName);
+	public UserModel findOneByEmailAndMobileNo(String userName,String mobileNo);
 	public UserModel findOneByUserName(String name);
+	public UserModel findOneByEmail(String name);
+	public UserModel findOneByUserNameAndEmailAndMobileNo(String userName,String email,String password);
 	public UserModel findOneByEmailAndPassword(String email,String password);
 }

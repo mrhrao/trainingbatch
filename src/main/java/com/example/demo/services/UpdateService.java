@@ -11,13 +11,15 @@ public class UpdateService {
 
 	@Autowired
 	UserRepository userData;
-	public UserModel updateUserData(UserModel data)
+	public String updateUserData(UserModel data)
 	{
 		UserModel model=new UserModel();
-		model=userData.findByIdAndUserName(data.getId(), data.getUserName());
+		model=userData.findOne(data.getId());
 		model.setMobileNo(data.getMobileNo());
 		model=userData.save(model);
-		return model;
+		if(model!=null)
+		return "success";
+		return "error";
 				
 		
 	}

@@ -17,15 +17,13 @@ public class UpdateUserData {
 	UpdateService update;
 
 @RequestMapping(value="/updateData",method=RequestMethod.POST)
-public void updateUserData(@RequestBody UserDTO data)
+public String updateUserData(@RequestBody UserDTO data)
 {
-	//System.out.println(data.getId());
-	//System.out.println(data.getMobileNo());
 	UserModel model=new UserModel();
 	model.setId(data.getId());
 	model.setUserName(data.getUserName());
 	model.setMobileNo(data.getMobileNo());
-	update.updateUserData(model);
+	return update.updateUserData(model);
 	
 }
 }
