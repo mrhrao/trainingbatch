@@ -1,92 +1,101 @@
-
-<div class="col-sm-12" id="banner">
+<div class="row"><div class="col-sm-12" id="banner">
 	
-    <div id="background"><div class="banner-image"></div></div>
-    
-    <section class="dark center">
-    <div class="header ">
-    
-    
-              <form action="" (ngSubmit)="submitLogin()" #loginForm="ngForm" method="post" name="Login_Form" class="form-signin">       
-                      <h3 class="form-signin-heading">Welcome! Sign Up To Continue</h3>
-                        <hr class="colorgraph"><br>
-                        
-                       
-                        <input [(ngModel)]="formData.text1" #flname="ngModel" type="text"
-                        name="fl" placeholder="First Name" minlength="10" 
-                        [ngClass]="{'error':flname.errors && flname.touched}" 
-                        class="form-control" id="fl3" 
-                        required="" autofocus="">
-                       
-                        <div *ngIf="flname.errors && flname.touched" class="red error">
-                              <div *ngIf="flname.errors.required">This is required field.</div>
-                              <div *ngIf="flname.errors.minlength">minimum 10 required</div>
-                              </div>
-                        
-                        
-                        
-                        
-                        
-                        <input [(ngModel)]="formData.email" #username="ngModel" type="email"
-                        name="em" placeholder="Email" minlength="10" 
-                        [ngClass]="{'error':username.errors && username.touched}" 
-                        class="form-control" id="inputEmail3" required="" autofocus="">
-                       
-                        <div *ngIf="username.errors && username.touched" class="red error">
-                              <div *ngIf="username.errors.required">This is required field.</div>
-                              <div *ngIf="username.errors.minlength">minimum 10 required</div>
-                              </div>
-  
-                      
+      <div id="background"><div class="banner-image"></div></div>
+      
+      <section class="dark center">
+      <div class="header ">
+      
+      
+                <form (ngSubmit)="submitLogin()" #loginForm="ngForm" class="form-signin">       
+                        <h3 class="form-signin-heading">Welcome! Sign Up To Continue</h3>
+                          <hr class="colorgraph"><br>
+                          
+                         
+                          <input [(ngModel)]="formData.fullName" #flname="ngModel" type="text"
+                          name="flname" placeholder="Full Name" minlength="10" 
+                          [ngClass]="{'error':flname.errors && flname.touched}" 
+                          class="form-control" id="fl3" 
+                          required>
+                         
+                          <div *ngIf="flname.errors && flname.touched" class="red error">
+                                <div *ngIf="flname.errors.required">This is required field.</div>
+                                <div *ngIf="flname.errors.minlength">minimum 10 characters should be allowed</div>
+                                </div>
+                          
+                          
+                          
+                          
+                                
+                          <input [(ngModel)]="formData.email" #email="ngModel" type="email"
+                          name="email" placeholder="Email" 
+                          [ngClass]="{'error':email.errors && email.touched}" 
+                          class="form-control" id="inputEmail3" required="" 
+                          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                         
+                          <div *ngIf="email.errors && email.touched" class="red error">
+                                <div *ngIf="email.errors.required">This is required field.</div>
+                                
                             
+                                <div *ngIf="email.errors.pattern">Email is invalid</div>
+                              </div>
+    
+                        
                               
-                        <input [(ngModel)]="formData.text2" #coun="ngModel" type="text"
-                        name="co" placeholder="Country"
-                        [ngClass]="{'error':coun.errors && coun.touched}" 
-                        class="form-control" id="fl4" 
-                        required="" autofocus="">
-                       
-                        <div *ngIf="coun.errors && coun.touched" class="red error">
-                              <div *ngIf="coun.errors.required">This is required field.</div>
-                              </div>
+                                
+                                
+                              <select style="padding-left: 7px;" #country="ngModel" [ngClass]="{'error':country.errors && country.touched}" required class="form-control" name="country" [(ngModel)]="formData.country">
+                                          <option value="" selected>Please select country.</option>
+                                           <option value="india">India</option>
+                                            <option value="usa">USA</option>   
+                                          </select>
+                                          <div *ngIf="country.errors && country.touched" class="red error">
+                                                      <div *ngIf="country.errors.required">This is required field.</div>
+                                                      
+                                                    </div>
+
+                                          <input type="password" [ngClass]="{'error':password.errors && password.touched}" validateEqual="confirmPassword" reverse="true" title="Please enter a password containing at-least one capital letter, number, and special character (The only special characters allowed are @#$%^)"
+                                          pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^])[A-Za-z\d@#$%^]{4,}$" minlength="6" name="password"
+                                          #password="ngModel" [(ngModel)]="formData.password" class="form-control" placeholder="Password" required>
+                                         
+                                          <div *ngIf="password.errors && password.touched" class="red error">
+                                                      <div [hidden]="!password.errors.required">Please enter password</div>
+                                                      <div [hidden]="!password.errors.pattern">
+                                                          Please enter valid password
+                                                      </div>
+                                                      <div [hidden]="!password.errors.minlength || password.errors.pattern">
+                                                          Password length should be atleast 6 characters long
+                                                      </div>
+                                                </div>
+                                    
+                              
+                                                    <input [ngClass]="{'error':confirmPassword.errors && confirmPassword.touched}" type="password" autocomplete="off" validateEqual="password" reverse="false" name="confirmPassword" #confirmPassword="ngModel"
+                                                        [(ngModel)]="confirmPasswords" class="form-control" placeholder="Confirm Password" required>
+                                                
+                                                    <div class="red error" [hidden]="(confirmPassword.valid || (confirmPassword.pristine && !loginForm.submitted))">confirm password does not match with password.</div>
+                                                                                  
+                        
 
 
-                      <input [(ngModel)]="formData.password" #pwd="ngModel" name="pwd" minlength="10" 
-                      [ngClass]="{'errors':pwd.errors && pwd.touched}" class="form-control" type="password" placeholder="Password" required="">     		  
-           
-                      <div *ngIf="pwd.errors && pwd.touched" class="red error">
-                            <div *ngIf="pwd.errors.required">This is required field.</div>
-                            <div *ngIf="pwd.errors.minlength">minimum 10 required</div>
+
+
+
+                                    
+  
+  <br>
+  
+                          <button type="submit" [disabled]="loginForm.invalid"
+                           class="btn btn-lg btn-primary btn-block" name="Submit" 
+                           value="Login" type="Submit">Sign Up</button>  			
+                          <div class="col-sm-12 margin-top form-group">
+                                                        <label>
+                               Already a member? <a routerLink="/login" style="color:blue;cursor: pointer;">Sign In</a> here
+                                </label>
                             </div>
-                            
-
-
-                      <br>
-                      <input [(ngModel)]="formData.password" #pwd="ngModel" name="pwd" minlength="10" 
-                      [ngClass]="{'errors':pwd.errors && pwd.touched}" class="form-control" type="password" placeholder="Password" required="">     		  
-           
-                      <div *ngIf="pwd.errors && pwd.touched" class="red error">
-                            <div *ngIf="pwd.errors.required">This is required field.</div>
-                            <div *ngIf="pwd.errors.minlength">minimum 10 required</div>
-                            </div>
-  
-
-
-
-                        <button type="submit" [disabled]="loginForm.invalid"
-                         class="btn btn-lg btn-primary btn-block" name="Submit" 
-                         value="Login" type="Submit">Sign Up</button>  			
-                        <div class="col-sm-12 margin-top form-group">
-                                                      <label>
-                             Not a member? <a style="color:blue;cursor: pointer;">Sign Up</a> here
-                              </label>
-                          </div>
-                      </form>
-              
-              </div>
-    
-    </section>
-    
-    </div>
-  
-  
+                        </form>
+                
+                </div>
+      
+      </section>
+      
+      </div>
+      </div>

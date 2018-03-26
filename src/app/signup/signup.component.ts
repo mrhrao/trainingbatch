@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SignUpService } from './signup.service';
 
 @Component({
   selector: 'app-signup',
@@ -7,12 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupComponent implements OnInit {
   private formData:any = {};
-  constructor() { }
+
+  constructor(public signupService: SignUpService) { }
 
   ngOnInit() {
+    this.formData.country = ""
   }
 submitLogin()
 {
-  console.log(this.formData)
+  this.signupService.submitLogin(this.formData).then(response => {
+    if (response) {
+      //  this.data = response.data.data;
+    } else if (response) {
+        // 
+    }
+});
+}
+
+changedValue(country){
+   if(country == 'select'){
+     alert("country should be there");
+   }
 }
 }

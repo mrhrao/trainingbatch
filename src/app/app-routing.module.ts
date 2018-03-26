@@ -20,8 +20,9 @@ import { HeaderComponent } from './header/header.component';
 import { LinkComponent } from './link/link.component';
 import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
-
-
+import { AdminloginComponent } from './adminlogin/adminlogin.component';
+import { UserviewComponent } from './userview/userview.component';
+import { UserdashboardComponent } from './userdashboard/userdashboard.component';
 
 const appRoutes: Routes = [
   { path: 'signup', component: SignupComponent },
@@ -35,8 +36,11 @@ const appRoutes: Routes = [
    { path: 'nav', component: NavComponent },
    { path: 'home', component: HomeComponent },
    { path: 'footer', component: FooterComponent },
-  { path: '',
-    redirectTo: '/signin',
+   { path: 'adminlogin', component: AdminloginComponent },
+   { path: 'userview', component: UserviewComponent },
+ { path: 'userdashboard', component: UserdashboardComponent },
+   { path: '',
+    redirectTo: '/dashboard',
     pathMatch: 'full'
   },
   { path: '**', component: LoginComponent }

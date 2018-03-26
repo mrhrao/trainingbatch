@@ -22,7 +22,15 @@ import { LinkComponent } from './link/link.component';
 import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AdminloginComponent } from './adminlogin/adminlogin.component';
+import { UserviewComponent } from './userview/userview.component';
+import { UserdashboardComponent } from './userdashboard/userdashboard.component';
 
+import { EqualValidator } from './signup/confirmPassword.directive';
+import { SignUpService } from './signup/signup.service';
+
+
+import { ResourceService } from './shared/resource.component';
 
 
 @NgModule({
@@ -41,7 +49,11 @@ import { AppRoutingModule } from './app-routing.module';
     HeaderComponent,
     LinkComponent,
     NavComponent,
-    FooterComponent
+    FooterComponent,
+    AdminloginComponent,
+    UserviewComponent,
+    UserdashboardComponent,
+    EqualValidator
   ],
   
   imports: [
@@ -55,7 +67,7 @@ import { AppRoutingModule } from './app-routing.module';
     // other imports here
     FormsModule
   ],
-  providers: [MainService],
+  providers: [MainService, ResourceService, SignUpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

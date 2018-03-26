@@ -1,4 +1,4 @@
-
+<div class="row">
 <div class="col-sm-12" id="banner">
 	
 	<div id="background"><div class="banner-image"></div></div>
@@ -11,23 +11,27 @@
                     <h3 class="form-signin-heading">Welcome Back! Please Sign In</h3>
                       <hr class="colorgraph"><br>
                       
-       <input [(ngModel)]="formData.email" #username="ngModel" type="email" required
-                        name="em" placeholder="Email" minlength="10" [ngClass]="{'error':username.errors && username.touched}" class="form-control" id="inputEmail3" required="" autofocus="">
+       <input [(ngModel)]="formData.email"  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" 
+        #username="ngModel" type="email" required
+                        name="em" placeholder="Email" [ngClass]="{'error':username.errors && username.touched}" class="form-control" id="inputEmail3" required="" autofocus="">
                        
                         <div *ngIf="username.errors && username.touched" class="red error">
                               <div *ngIf="username.errors.required">This is required field.</div>
-                              <div *ngIf="username.errors.minlength">minimum 10 required</div>
-                              </div>
+                              <div *ngIf="username.errors.pattern">Email is invalid</div> 
+                            </div>
   
                       
                             
 
-                      <input [(ngModel)]="formData.password" #pwd="ngModel" name="pwd" minlength="10" 
-                      [ngClass]="{'errors':pwd.errors && pwd.touched}" class="form-control" type="password" placeholder="Password" required="">     		  
+                      <input [(ngModel)]="formData.password" #pwd="ngModel" name="pwd"
+                      [ngClass]="{'errors':pwd.errors && pwd.touched}" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" type="password" placeholder="Password" required="">     		  
            
                       <div *ngIf="pwd.errors && pwd.touched" class="red error">
                             <div *ngIf="pwd.errors.required">This is required field.</div>
-                            <div *ngIf="pwd.errors.minlength">minimum 10 required</div>
+                              <div *ngIf="pwd.errors.pattern">
+                              Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters
+
+                        </div>
                             </div>
                             
                       <br>
@@ -42,14 +46,14 @@
                           <div class="col-sm-6" style="text-align:right;">
                         
                                   <label>
-                                <a style="cursor: pointer;color:#a74242;text-decoration: none;"> Forget Password?</a>
+                                <a style="cursor: pointer;color:#a74242;text-decoration: none;" routerLink="/forgetPassword"> Forget Password?</a>
                                   </label>
                               </div>
                        
                             </div>
                       
 
-                      <button type="submit" [disabled]="loginForm.invalid" class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit">Login</button>  			
+                      <button routerLink="/userdashboard" type="submit" [disabled]="loginForm.invalid" class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit">Login</button>  			
                       <div class="col-sm-12 margin-top form-group">
                                                     <label>
                            Not a member? <a routerLink="/signup" style="color:blue;cursor: pointer;">Sign Up</a> here
@@ -62,4 +66,4 @@
 	</section>
 	
 	</div>
-
+</div>
