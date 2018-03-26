@@ -1,5 +1,7 @@
 package com.crud.demo.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,7 +14,8 @@ public class Role {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String roleType;
-	/*@ManyToMany(mappedBy="roles",fetch=FetchType.LAZY)*/
+	@ManyToMany(mappedBy="roles",fetch=FetchType.LAZY)
+	private List<User> users;
 	/*private User user;*/
 	public Integer getId() {
 		return id;
@@ -32,4 +35,10 @@ public class Role {
 	public void setUser(User user) {
 		this.user = user;
 	}*/
+	public List<User> getUsers() {
+		return users;
+	}
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
 }

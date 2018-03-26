@@ -16,8 +16,9 @@ private CoinManagementJpaRepository coinManagementJpaRepository;
 
 
 
-public void addCurruncy(CoinManagement coinManagement) {
-	coinManagementJpaRepository.save(coinManagement);	
+public String addCurruncy(CoinManagement coinManagement) {
+	coinManagementJpaRepository.save(coinManagement);
+	return "Coin details saved successfully ";
 }
 
  public List<CoinManagement> getAllCurrency() {
@@ -25,13 +26,28 @@ public void addCurruncy(CoinManagement coinManagement) {
 	return coinManagementJpaRepository.findAll();
 }
 
-public void updateCurrency(Integer currency_id) {
-	
-	coinManagementJpaRepository.findOne(currency_id);	
+public String updateCurrency(CoinManagement  coinManagement) {
+	String result="Sorry You don't have  result to update";
+	CoinManagement existingCoinManagement=coinManagementJpaRepository.findOne(coinManagement.getC_id());
+	if(existingCoinManagement!=null)
+	{    existingCoinManagement.setInitialSupply(coinManagement.getInitialSupply());
+	existingCoinManagement.setName(coinManagement.getName());
+	existingCoinManagement.setPrice(coinManagement.getPrice());
+	existingCoinManagement.setSymbol(coinManagement.getSymbol());
+		coinManagementJpaRepository.save(existingCoinManagement);
+	 result="CoinManagement record updated successfully";
+	}
+	return result;
 }
 
-public void deleteCurrency(Integer currency_id) {
+public String deleteCurrency(Integer currency_id) 
+{
+	String result="Not have this result";
+	if(coinManagementJpaRepository.findOne(currency_id)!=null)
+	{
 	coinManagementJpaRepository.delete(currency_id);
-	
+	 result="Corrency record deleted successfully";
+	}
+	return result;
 }
 }

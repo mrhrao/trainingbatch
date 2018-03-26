@@ -27,12 +27,28 @@ public class User {
 	private String country;
 	private Date createdOn;
 	
-	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="user")
+	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	private Set<UserWallet> userWallet; 
 	
 	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	@JoinTable(name="user_role",joinColumns= {@JoinColumn(name = "user_id")},inverseJoinColumns = { @JoinColumn(name = "role_id") })
 	private List<Role> roles;
+	
+	
+	//constructors
+	public User()
+	{
+      super();
+	}
+	
+	//copy Constructor used in spring security CustomUserDetails class
+	public User(User user) {
+		super();
+	}
+	
+	
+	
+	
 	
 	public Integer getId() {
 		return u_id;

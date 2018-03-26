@@ -3,7 +3,6 @@ package com.crud.demo.conroller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.crud.demo.model.User;
@@ -28,7 +27,7 @@ public class UserWalletController {
 		
 		return userWalletService.withdrawAmount(userWallet);
 	}
-	@RequestMapping("/depoisit-amount")
+	@RequestMapping("/deposit-amount")
     public String depositAmount(@RequestBody UserWallet userWallet){
 			
 		return userWalletService.depositAmount(userWallet);

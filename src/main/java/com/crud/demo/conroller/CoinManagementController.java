@@ -18,8 +18,8 @@ public class CoinManagementController {
 	
 	
 	@RequestMapping("/add-currancy")
-	public void addCurrancy(@RequestBody CoinManagement  coinManagement){
-		coinManagementService.addCurruncy(coinManagement);
+	public String addCurrancy(@RequestBody CoinManagement  coinManagement){
+		return coinManagementService.addCurruncy(coinManagement);
 	}
 	
 	@RequestMapping("/getAll-currency")
@@ -27,12 +27,12 @@ public class CoinManagementController {
 		return coinManagementService.getAllCurrency();
 	}
 	@RequestMapping("/update-currency")
-	public void updateCurrency(@RequestParam Integer currency_id) {
-		coinManagementService.updateCurrency(currency_id);
+	public String updateCurrency(@RequestBody CoinManagement  coinManagement) {
+		return coinManagementService.updateCurrency(coinManagement);
 	}
 	@RequestMapping("/delete-currency")
-	public void deleteCurrency(@RequestParam Integer currency_id) {
-		coinManagementService.deleteCurrency(currency_id);
+	public String deleteCurrency(@RequestParam Integer currency_id) {
+		return coinManagementService.deleteCurrency(currency_id);
 	}
 
 }
