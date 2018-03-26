@@ -7,5 +7,7 @@ import com.example.trainingnew.model.Rolemodel;
 public interface RoleRepo extends JpaRepository<Rolemodel, Long>{
 
 	Rolemodel findOneById(long id);
+	
+	Rolemodel findOneByRole(String name);
 
 }

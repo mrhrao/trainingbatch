@@ -34,16 +34,26 @@ public class RoleController {
 	//createRoledataServices
 	@RequestMapping(value = "/insertrole", method = RequestMethod.POST)
 		public Rolemodel createRole(@RequestBody Rolemodel note) {
-			
+		
+		Rolemodel model=rolerepo.findOneByRole(note.getRole());
+		
+		if(model==null)
+		{
 			return rolerepo.save(note);
+		}	
+		return null;
 		}
 	
 	
-	@RequestMapping(value = "/adding", method = RequestMethod.POST)
+	@RequestMapping(value = "/assignrole", method = RequestMethod.POST)
 	public Usermodel insertDataWithRole(@Valid @RequestBody Rolemodel note) {
 		
 		Usermodel up=userrepo.findOneById(note.getId());
-		up.getRoles().add(note);
+		
+		Rolemodel rr=rolerepo.findOneByRole(note.getRole());
+		
+		
+		up.getRoles().add(rr);
 		return userrepo.save(up);
 	}
 	

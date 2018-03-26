@@ -1,11 +1,9 @@
 package com.example.trainingnew.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,20 +18,17 @@ public class Rolemodel {
 	@GeneratedValue( strategy= GenerationType.IDENTITY)
 	private long id;
 	private String role;
-	
-	@ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                CascadeType.PERSIST,
-                CascadeType.MERGE
-            },
-            mappedBy = "roles")
-	private Set<Usermodel> users = new HashSet<>();
 
-	
-//	public Rolepojo(long id) {
-//		super();
-//		this.id = id;
-//	}
+	@ManyToMany(mappedBy="roles")
+	private List<Usermodel> user=new ArrayList<>();
+
+	public List<Usermodel> getUser() {
+		return user;
+	}
+
+	public void setUser(List<Usermodel> user) {
+		this.user = user;
+	}
 
 	public long getId() {
 		return id;
@@ -49,16 +44,6 @@ public class Rolemodel {
 
 	public void setRole(String role) {
 		this.role = role;
-	}
-
-//	public Set<UserPojo> getUsers() {
-//		return users;
-//	}
-//
-//	public void setUsers(Set<UserPojo> users) {
-//		this.users = users;
-//	}
-	
-	
+	}	
 	
 }
