@@ -31,6 +31,7 @@ import { SignUpService } from './signup/signup.service';
 
 
 import { ResourceService } from './shared/resource.component';
+import { EmailComponent } from './email/email.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { ResourceService } from './shared/resource.component';
     AdminloginComponent,
     UserviewComponent,
     UserdashboardComponent,
-    EqualValidator
+    EqualValidator,
+    EmailComponent
   ],
   
   imports: [
