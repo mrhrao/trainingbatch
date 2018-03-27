@@ -15,71 +15,77 @@ import com.example.demo.service.UserService;
 @RestController
 @RequestMapping("/userdata")
 public class UserController {
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@RequestMapping(value = "/getAllDetailUser", method = RequestMethod.GET)
-	public List<UserModel> getAllDetail(){
+	public List<UserModel> getAllDetail() {
 		return userService.getAllDetails();
 	}
-	
-	@RequestMapping(value ="/adduser", method = RequestMethod.POST)
-	public void add(@RequestBody UserModel user) {
+
+	// To add a new user and a default is created
+	@RequestMapping(value = "/adduser", method = RequestMethod.POST)
+	public String add(@RequestBody UserModel user) throws Exception {
 		userService.addUser(user);
+		return "success";
 	}
-	@RequestMapping(value ="/addwallet/{name}", method = RequestMethod.POST)
-	public void addingAnotherWallet(@PathVariable(value = "name") String walletType,@RequestBody UserModel user) {
-		userService.addAnotherWallet(user,walletType);
+
+	@RequestMapping(value = "/addrole/{role}", method = RequestMethod.POST)
+	public String addRoles(@PathVariable(value = "role") String roleType, @RequestBody UserModel user) {
+		userService.addRole(user, roleType);
+		return "success";
 	}
-	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST) 
-	public List<UserModel> update(@PathVariable(value = "id") Integer userId,
-            @RequestBody UserModel userDetails) {
-		System.out.println(userId+"-------------------------------------");
-		return userService.updateUser(userId,userDetails);
-		
+
+	@RequestMapping(value = "/addwallet/{name}", method = RequestMethod.POST)
+	public String addingAnotherWallet(@PathVariable(value = "name") String walletType, @RequestBody UserModel user) {
+		userService.addAnotherWallet(user, walletType);
+		return "success";
 	}
-	
-	@RequestMapping(value = "/get/{id}", method = RequestMethod.POST) 
-	public UserModel getUser(@PathVariable(value = "id") Integer userId,
-            @RequestBody UserModel userDetails) {
-		System.out.println(userId+"-------------------------------------");
-		return userService.getUser(userId,userDetails);
-		
+
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+	public List<UserModel> update(@PathVariable(value = "id") Integer userId, @RequestBody UserModel userDetails) {
+		return userService.updateUser(userId, userDetails);
 	}
-	
-	@RequestMapping(value = "/addamount/{amount}/{walletType}", method = RequestMethod.POST) 
-	public void addAmount(@PathVariable(value = "amount") Float amount,@PathVariable(value = "walletType") String walletType,@RequestBody UserModel userDetails) {
-			 userService.addAmountIntoWallet(userDetails,amount,walletType);
-		
+
+	@RequestMapping(value = "/get/{id}", method = RequestMethod.POST)
+	public UserModel getUser(@PathVariable(value = "id") Integer userId, @RequestBody UserModel userDetails) {
+		System.out.println(userId + "-------------------------------------");
+		return userService.getUser(userId, userDetails);
+
 	}
-	
-	@RequestMapping(value = "/withdrawamount/{amount}/{walletType}", method = RequestMethod.POST) 
-	public void withdrawAmount(@PathVariable(value = "amount") Float amount,@PathVariable(value = "walletType") String walletType,@RequestBody UserModel userDetails) {
-			 userService.withdrawAmountFromWallet(userDetails,amount,walletType);
-		
+
+	@RequestMapping(value = "/addamount/{amount}/{walletType}", method = RequestMethod.POST)
+	public String addAmount(@PathVariable(value = "amount") Float amount,
+			@PathVariable(value = "walletType") String walletType, @RequestBody UserModel userDetails) {
+		userService.addAmountIntoWallet(userDetails, amount, walletType);
+		return "success";
+
 	}
-	
+
+	@RequestMapping(value = "/withdrawamount/{amount}/{walletType}", method = RequestMethod.POST)
+	public String withdrawAmount(@PathVariable(value = "amount") Float amount,
+			@PathVariable(value = "walletType") String walletType, @RequestBody UserModel userDetails) {
+		userService.withdrawAmountFromWallet(userDetails, amount, walletType);
+		return "success";
+
+	}
+
 	@RequestMapping(value = "/deleteuser/{id}", method = RequestMethod.DELETE)
-	public void delete(Integer id) {
+	public String delete(Integer id) {
 		userService.deleteUser(id);
+		return "success";
 	}
-	
 
-	@RequestMapping(value ="/show1", method = RequestMethod.POST)
+	@RequestMapping(value = "/show1", method = RequestMethod.POST)
 	public Iterable<UserModel> getAllRole() {
-		 return userService.getAll();
+		return userService.getAll();
 	}
 
-	
-	@RequestMapping(value ="/save1", method = RequestMethod.POST)
-	public void updateRoleRequest(@RequestBody UserModel user){
-		userService.saveUserRole(user);
-	}
-	
-	@RequestMapping(value ="/saveWallet", method = RequestMethod.POST)
-	public void updateWalletRequest(@RequestBody UserModel user){
+	@RequestMapping(value = "/saveWallet", method = RequestMethod.POST)
+	public String updateWalletRequest(@RequestBody UserModel user) {
 		userService.saveUserWallet(user);
+		return "success";
 	}
 
 }

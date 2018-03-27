@@ -3,7 +3,6 @@ package com.example.demo.model;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -30,7 +29,7 @@ public class UserModel {
 	private String email;
 	private Long mobile;
 	private String passwd;
-	private Boolean status;
+	private Boolean status = false;
 
 
 	 @ManyToMany(fetch = FetchType.LAZY,
