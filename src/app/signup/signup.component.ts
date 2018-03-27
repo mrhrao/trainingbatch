@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SignUpService } from './signup.service';
+import {MainService} from './../service/mainService'
 
 @Component({
   selector: 'app-signup',
@@ -9,20 +10,19 @@ import { SignUpService } from './signup.service';
 export class SignupComponent implements OnInit {
   private formData:any = {};
 
-  constructor(public signupService: SignUpService) { }
+  constructor(public signupService: SignUpService,private mainService:MainService) { }
 
   ngOnInit() {
     this.formData.country = ""
   }
 submitLogin()
-{
-  this.signupService.submitLogin(this.formData).then(response => {
-    if (response) {
-      //  this.data = response.data.data;
-    } else if (response) {
-        // 
-    }
-});
+{ 
+  console.log(this.formData)
+  this.mainService.submitLogin(this.formData).subscribe(
+    succes =>
+    {
+      console.log("succes",succes);
+    })
 }
 
 changedValue(country){

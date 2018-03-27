@@ -18,6 +18,16 @@ export class MainService  {
     }
     overallDetails() {
 		return this.http.get('https://jsonplaceholder.typicode.com/posts').map(res => res.json());
-	}
-
-}
+  }
+  submitLogin(fromData){
+    
+      console.log('fromData',fromData);
+      let data:any = {
+              "userName": fromData.fullName,
+              "email": fromData.email,
+              "password":fromData.password,
+              "country":fromData.country
+      }
+         return this.http.post('http://192.168.9.167:8080/sign_up?', data).map(res => res.json());
+    }
+  }
