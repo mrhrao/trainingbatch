@@ -1,0 +1,34 @@
+
+
+.main_div{
+    width: 100%;
+    position: relative;
+    
+}
+
+
+.container2{
+    width: 40%;
+    height: 500px;
+    margin-left: 4%;
+    position: absolute;
+    
+}
+
+.live_price{
+    width: 35%;
+    max-height: 540px;
+    position: absolute;
+    margin-left: 60% ;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 3px 1px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
+    
+}
+.tab-content{
+    border:  1px solid #DDDDDD;
+    border-top: 0px;
+    border-bottom: 1px solid #DDDDDD;
+    overflow: hidden;
+    
+}
