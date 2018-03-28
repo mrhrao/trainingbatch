@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
@@ -25,6 +26,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AdminloginComponent } from './adminlogin/adminlogin.component';
 import { UserviewComponent } from './userview/userview.component';
 import { UserdashboardComponent } from './userdashboard/userdashboard.component';
+import { ToasterModule, ToasterService } from 'angular2-toaster';
+
+
 
 import { EqualValidator } from './signup/confirmPassword.directive';
 import { SignUpService } from './signup/signup.service';
@@ -62,6 +66,8 @@ import { EmailComponent } from './email/email.component';
     AppRoutingModule,
     BrowserModule,
     HttpModule,
+    ToasterModule,
+    BrowserAnimationsModule,
     NgbModule.forRoot(),
     CarouselModule.forRoot(),
   
@@ -69,7 +75,7 @@ import { EmailComponent } from './email/email.component';
     // other imports here
     FormsModule
   ],
-  providers: [MainService, ResourceService, SignUpService],
+  providers: [MainService, ResourceService, SignUpService,ToasterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

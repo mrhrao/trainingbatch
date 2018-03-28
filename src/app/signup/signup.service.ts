@@ -9,11 +9,11 @@ export class SignUpService {
 
     }
 
-    submitLogin(data) {
-        let url = 'http://192.168.9.167:8080/sign_up';
-        return this.resourceService.sendPostRequest(data, url).then(response => {
-            return response;
-        }).catch((err) => {
-        });
-    }
+    // submitLogin(data) {
+    //     let url = 'http://192.168.9.167:8080/sign_up';
+    //     return this.resourceService.sendPostRequest(data, url).then(response => {
+    //         return response;
+    //     }).catch((err) => {
+    //     });
+    // }
 }

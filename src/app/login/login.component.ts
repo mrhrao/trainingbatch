@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MainService } from './../service/mainService'
 @Component({
   selector: 'app-login',
@@ -6,8 +7,8 @@ import { MainService } from './../service/mainService'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  private formData: any = {};
-  constructor(private mainService:MainService) { }
+  private SignInData: any = {};
+  constructor(private mainService:MainService, private router:Router) { }
 
   ngOnInit() {
     console.log(this.mainService.obj);
@@ -19,7 +20,12 @@ export class LoginComponent implements OnInit {
       })
   }
 
-  submitLogin() {
-    console.log(this.formData)
+  submitSignin() {
+    this.mainService.submitSignin(this.SignInData).subscribe(
+      succes=>
+      {
+        this.router.navigate(['/dashboard']);
+        console.log('succes',succes)
+      })
   }
 }

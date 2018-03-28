@@ -1,6 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+/* @import url("./../node_modules/angular2-toaster/toaster"); */
+
 .error
 {
     color: red;
     border-color: red;
 }
+
+.placeholder-padding
+{
+padding-top: 15px !important;
+    padding-bottom: 15px !important;
+}
+
+
