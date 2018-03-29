@@ -10,25 +10,25 @@
     </div>
     </nav>
 
-<div class="w3-sidebar w3-bar-block w3-light-grey w3-card" style="width:200px;position: absolute !important;">
+<div class="w3-sidebar w3-bar-block w3-light-grey w3-card" style="width:200px;">
   <a href="#" class="w3-bar-item w3-button">Payment</a>
-  <button class="w3-button w3-block w3-left-align" (click)="myAccFunc('coinManagement')">
+  <button class="w3-button w3-block w3-left-align" onclick="myAccFunc()">
         Coin Management <i class="fa fa-caret-down"></i>
         </button>
-        <div id="demoAcc" class="w3-hide w3-white w3-card" [class.show-menu]="isShowMenu == 'coinManagement'" >
+        <div id="demoAcc" class="w3-hide w3-white w3-card">
       
           <a href="#" class="w3-bar-item w3-button">View Currency</a>
         </div>
   
   
-  <button class="w3-button w3-block w3-left-align" (click)="myAccFunc('userManagement')">
+  <button class="w3-button w3-block w3-left-align" onclick="myAccFunc()">
   User Management <i class="fa fa-caret-down"></i>
   </button>
-  <div id="demoAcc" class="w3-hide w3-white w3-card" [class.show-menu]="isShowMenu == 'userManagement'">
+  <div id="demoAcc" class="w3-hide w3-white w3-card">
 
     <a href="#" class="w3-bar-item w3-button">View User</a>
   </div>
-<button class="w3-button w3-block w3-left-align" (click)="myAccFunc()">
+<button class="w3-button w3-block w3-left-align" onclick="myAccFunc()">
   Transaction Management<i class="fa fa-caret-down"></i>
   </button>
 
@@ -37,10 +37,10 @@
 
   <a href="#" class="w3-bar-item w3-button">Transaction</a>
 </div>
-<button class="w3-button w3-block w3-left-align" (click)="myAccFunc('trading')">
+<button class="w3-button w3-block w3-left-align" onclick="myAccFunc()">
         Trading <i class="fa fa-caret-down"></i>
         </button>
-        <div id="demoAcc" class="w3-hide w3-white w3-card" [class.show-menu]="isShowMenu == 'trading'">
+        <div id="demoAcc" class="w3-hide w3-white w3-card">
       
           <a href="#" class="w3-bar-item w3-button">Orders</a>
         </div>

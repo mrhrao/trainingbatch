@@ -23,6 +23,8 @@ import { FooterComponent } from './footer/footer.component';
 import { AdminloginComponent } from './adminlogin/adminlogin.component';
 import { UserviewComponent } from './userview/userview.component';
 import { UserdashboardComponent } from './userdashboard/userdashboard.component';
+import { AddcoinComponent } from './addcoin/addcoin.component';
+
 
 const appRoutes: Routes = [
   { path: 'signup', component: SignupComponent },
@@ -38,6 +40,7 @@ const appRoutes: Routes = [
    { path: 'footer', component: FooterComponent },
    { path: 'adminlogin', component: AdminloginComponent },
    { path: 'userview', component: UserviewComponent },
+   { path: 'addcoin', component: AddcoinComponent },
  { path: 'userdashboard', component: UserdashboardComponent },
    { path: '',
     redirectTo: '/dashboard',

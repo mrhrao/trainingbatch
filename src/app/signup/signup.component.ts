@@ -14,7 +14,7 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
    this.signUpData.country="";
-   this.toasterService.pop('success', 'Success!', "this is success")
+  // this.toasterService.pop('success', 'Success!', "You have successfully created your account! Please Sign in using the email and password you have just created.")
   }
   submitSignup()
 { 
@@ -24,6 +24,7 @@ export class SignupComponent implements OnInit {
     succes =>
     {
       console.log("succes",succes);
+      this.toasterService.pop('success', 'Success!', "You have successfully created your account!")
     })
 }
 

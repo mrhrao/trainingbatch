@@ -6,7 +6,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
   styleUrls: ['./userview.component.css']
 })
 export class UserviewComponent implements OnInit {
-
+   public isShowMenu: string = "";
   constructor() { }
 
   ngOnInit() {
@@ -19,5 +19,14 @@ export class UserviewComponent implements OnInit {
       $("#left ul.nav li.current").parents('ul.children').addClass("in");
   
   };
+  //this.isShowMenu = "userManagement";
+  }
+
+  myAccFunc(type){
+    // $(this).click(() => {
+    //   $(this).next().removeClass("w3-hide");
+    // })
+    this.isShowMenu = type;
+    console.log("sdfdf")
   }
 }
