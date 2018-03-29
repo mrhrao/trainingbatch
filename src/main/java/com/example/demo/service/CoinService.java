@@ -12,41 +12,44 @@ import com.example.demo.repository.CoinRepository;
 
 @Service
 public class CoinService {
-	
+
 	@Autowired
 	private CoinRepository coinRepo;
-	
-	public void addCoin(CoinModel coinModel) {
+
+	public Boolean addCoin(CoinModel coinModel) {
 		coinRepo.save(coinModel);
+		return true;
 	}
-	
-	public List<CoinModel> getAllCoinDetail(){
+
+	public Object getAllCoinDetail() {
 		List<CoinModel> coinDetails = new ArrayList<CoinModel>();
 		coinRepo.findAll().forEach(coinDetails::add);
-		return coinDetails;
+		if (coinDetails != null) {
+			return coinDetails;
+		} else {
+			return "No Data Found";
+		}
 	}
-	
-	public List<CoinModel> updateCoin(int coinId,CoinModel coinModel)  {
 
-		Optional<CoinModel> coinOptionalObject = coinRepo.findById(coinId);
-		coinOptionalObject.get().setCoinName(coinModel.getCoinName());
-		coinOptionalObject.get().setCoinSymbol(coinModel.getCoinSymbol());
-		coinOptionalObject.get().setInitialCoinSupply(coinModel.getInitialCoinSupply());
-		coinOptionalObject.get().setCoinPrice(coinModel.getCoinPrice());
+	public Object updateCoin(CoinModel coinModel) {
 
-		coinRepo.save(coinOptionalObject.get());
-		List<CoinModel> coinDetails = new ArrayList<CoinModel>();
-		coinRepo.findAll().forEach(coinDetails::add);
-	    return coinDetails;
+		Optional<CoinModel> coinOptionalObject = coinRepo.findById(coinModel.getCoinId());
+		if (coinOptionalObject != null) {
+			coinOptionalObject.get().setCoinName(coinModel.getCoinName());
+			coinOptionalObject.get().setCoinSymbol(coinModel.getCoinSymbol());
+			coinOptionalObject.get().setInitialCoinSupply(coinModel.getInitialCoinSupply());
+			coinOptionalObject.get().setCoinPrice(coinModel.getCoinPrice());
+			coinRepo.save(coinOptionalObject.get());
+			return "success";
+		} else {
+			return "No Coin Exist";
+		}
+
 	}
-	public List<CoinModel> deleteCoin(Integer coinId)  {
 
-		coinRepo.deleteById(coinId);
-		List<CoinModel> coinDetails = new ArrayList<CoinModel>();
-		coinRepo.findAll().forEach(coinDetails::add);
-	    return coinDetails;
+	public Boolean deleteCoin(CoinModel coinModel) {
+		coinRepo.deleteById(coinModel.getCoinId());
+		return true;
 	}
-	
-	
 
 }

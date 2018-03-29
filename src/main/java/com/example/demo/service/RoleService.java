@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.constant.RoleEnum;
 import com.example.demo.model.RoleModel;
 import com.example.demo.repository.RoleRepository;
 
@@ -20,8 +21,17 @@ public class RoleService {
 		roleRepo.findAll().forEach(roleDetails::add);
 		return roleDetails;
 	}
-	public void addRole(RoleModel roleModel) {
-		roleRepo.save(roleModel);
+	public void addRole() { 
+		int i = 1;
+		RoleModel roleModel = new RoleModel();
+		for (RoleEnum type : RoleEnum.values()) {
+			System.out.println(type);
+			roleModel.setRoleId(i);
+			roleModel.setRole(type.toString());
+			roleRepo.save(roleModel);
+			i++;
+		}
+		
 	}
 	public void deleteUser(int id) {
 		roleRepo.deleteById(id);

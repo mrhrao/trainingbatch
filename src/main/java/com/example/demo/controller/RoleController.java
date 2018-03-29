@@ -24,8 +24,8 @@ public class RoleController {
 	}
 	
 	@RequestMapping(value ="/addrole", method = RequestMethod.POST)
-	public void add(@RequestBody RoleModel type) {
-		roleService.addRole(type);
+	public void add() {
+		roleService.addRole();
 	}
 	 
 	

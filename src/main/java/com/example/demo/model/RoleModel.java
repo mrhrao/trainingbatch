@@ -10,7 +10,6 @@ import javax.validation.constraints.NotNull;
 public class RoleModel {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
 	private int roleId;
 	private String role;
